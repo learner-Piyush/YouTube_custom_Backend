@@ -1,4 +1,9 @@
-# YouTube_(custom)
+# YouTube_custom_Backend
+
+## Live Demo
+
+Here is the link to the live demo of the YouTube_(custom) application:
+[YouTube custom Backend](https://youtube-custom-backend.onrender.com)
 
 ## Description
 
@@ -87,12 +92,13 @@ YouTube_(custom)/
 # Postman API Documentation
 This documentation provides a comprehensive overview of the API endpoints available in the YouTube (custom) application.
 It includes details on how to interact with the API, including request methods, endpoints, request bodies, and expected responses.
+Copy the URL and set `myURL` as variable in Postman to test the API endpoints.
 
 ## healthcheck
 
 ### <font color = #6bdd9a> GET </font> New Request
 
-`http://localhost:8000/api/v1/healthcheck`
+`myURL/api/v1/healthcheck`
 
 ### Healthcheck API
 The Healthcheck API endpoint is used to verify the operational status of the service.
@@ -100,7 +106,7 @@ It provides a simple way to check if the application is running and accessible.
 
 ### Request
 * <b> HTTP Method </b>: GET
-* <b> Endpoint </b>: `http://localhost:8000/api/v1/healthcheck`
+* <b> Endpoint </b>: `myURL/api/v1/healthcheck`
 
 ### Response
 ### Expected Status Codes
@@ -135,7 +141,7 @@ If the service is down or experiencing issues, a different status code will be r
 
 ### <font color = #ffe47e> POST </font> New Request
 
-`http://localhost:8000/api/v1/users/register`
+`myURL/api/v1/users/register`
 
 ### User Registration API
 This endpoint allows users to register by providing their details, including optional avatar and cover image uploads.
@@ -144,7 +150,7 @@ Additionally, users can upload an optional `avatar` and `coverImage`.
 
 ### Request
 * <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `http://localhost:8000/api/v1/users/register`
+* <b> Endpoint </b>: `myURL/api/v1/users/register`
 
 <b> Request Body (form-data) </b>
 
@@ -208,7 +214,7 @@ It is essential to ensure that all required fields are filled out correctly to s
 
 ### Request
 * <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `http://localhost:8000/api/v1/users/register`
+* <b> Endpoint </b>: `myURL/api/v1/users/register`
 
 <b> Request Body </b>:
 The request body must be in JSON format and include the following parameters:
