@@ -135,11 +135,9 @@ JSON
 This response confirms that the service is functioning correctly.
 If the service is down or experiencing issues, a different status code will be returned along with relevant error information.
 
----
-
 ## users
 
-### <font color = #ffe47e> POST </font> New Request
+### <font color = #ffe47e> POST </font> register
 
 `myURL/api/v1/users/register`
 
@@ -256,4 +254,194 @@ HTML
 
 Ensure to provide valid input for all required fields to avoid receiving a 400 Bad Request response.
 
+---
 
+# Assignment 1 - Test some of the endpoints in users using Postman
+
+### <font color = #ffe47e> POST </font> login
+
+`https://youtube-custom-backend.onrender.com/api/v1/users/login`
+
+### User Login API
+This endpoint allows users to log in to the application by providing their credentials.
+Upon successful authentication, the server responds with user details and tokens for session management.
+
+### Request
+* <b> HTTP Method </b>: POST
+* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/login`
+
+### Headers
+<b> Content-Type </b>: `application/json`
+
+Specifies that the request body format is JSON.
+
+### Request Body
+The request body must be a JSON object containing the following parameters:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| email | string | The email address of the user. |
+| username | string | The username of the user. |
+| password | string | The password for the user account. |
+
+### Example Request Body
+
+```JSON
+JSON
+
+{
+  "email": "test@gmail.com",
+  "username": "test",
+  "password": "123456789"
+}
+```
+
+### Response
+On a successful login, the server will return a JSON response with the following structure:
+
+### Response Structure
+| Key | Type | Description |
+| --- | --- | --- |
+| statusCode | number | The status code indicating the result of the request. |
+| data | object | Contains the user information and tokens. |
+| message | string | A message indicating the result of the login attempt. |
+| success | boolean | Indicates whether the login was successful. |
+
+### User Data Structure
+The data object includes:
+
+| Key | Type | Description |
+| --- | --- | --- |
+| user | object | Information about the logged-in user. |
+| accessToken | string | Token for accessing protected routes. |
+| refreshToken | string | Token for refreshing the session. |
+
+The user object contains the following fields:
+ * `_id`: User's unique identifier.
+ * `username`: User's username.
+ * `email`: User's email address.
+ * `fullname`: User's full name.
+ * `avatar`: URL to the user's avatar image.
+ * `coverImage`: URL to the user's cover image.
+ * `watchHistory`: Array of videos watched by the user.
+ * `createdAt`: Timestamp of user account creation.
+ * `updatedAt`: Timestamp of the last update to the user account.
+ * `__v`: Version key for the user document.
+
+### Example Response
+
+```JSON
+JSON
+
+{
+    "statusCode": 200,
+    "data": {
+        "user": {
+            "_id": "686cbd625ead05aab2f2d4b5",
+            "username": "test",
+            "email": "test@gmail.com",
+            "fullname": "Test",
+            "avatar": "cloudinary url for avatar",
+            "coverImage": "cloudinary url for cover image",
+            "watchHistory": [],
+            "createdAt": "2025-07-08T06:40:34.519Z",
+            "updatedAt": "2025-07-10T13:46:09.969Z",
+            "__v": 0
+        },
+        "accessToken": "long value of access token",
+        "refreshToken": "long value of refresh token"
+    },
+    "message": "User logged in successfully",
+    "success": true
+}
+```
+
+### Status Codes
+200 OK: Successfully logged in.
+4xx: Client error, such as invalid credentials or missing parameters.
+5xx: Server error, indicating an issue with the login process.
+
+Ensure that the request body is properly formatted and contains all required fields to avoid errors during login.
+
+### <font color = #ffe47e> POST </font> refresh-token
+
+`https://youtube-custom-backend.onrender.com/api/v1/users/refresh-token`
+
+### Refresh Token API
+This endpoint allows users to refresh their authentication tokens.
+It is essential for maintaining a valid session without requiring the user to log in again.
+
+### Request
+* <b> HTTP Method </b>: POST
+* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/refresh-token`
+
+### Headers
+* <b> Content-Type </b>: `application/json`
+* Authorization: `Bearer {your_access_token}` (if required)
+
+### Request Body
+The request body must be sent as a JSON object and should include the following field:
+refresh_token (string): The token that is used to obtain a new access token.
+
+Example Request Body
+
+```JSON
+JSON
+
+{
+    "statusCode": 200,
+    "data": {
+        "accessToken": "long value of access token",
+        "refreshToken": "long value of new refresh token"
+    },
+    "message": "Access token refreshed successfully",
+    "success": true
+}
+```
+
+### Response
+### Success Response
+* Status Code: 200
+* Content-Type: `application/json`
+
+### Error Response
+In case of an error, the API may return different status codes along with an error message.
+The structure will typically include:
+* statusCode: An error code indicating the type of error.
+* message: A description of the error.
+* success: A boolean indicating the failure of the request.
+
+### Notes
+* Ensure that the refresh_token is valid and has not expired.
+* The returned accessToken and refreshToken should be stored securely for future requests.
+
+### <font color = #ffe47e> POST </font> logout
+
+`https://youtube-custom-backend.onrender.com/api/v1/users/logout`
+
+### User Logout API
+This endpoint is used to log the user out of the application.
+By sending a POST request to this endpoint, the user will be successfully logged out,
+and any session or authentication tokens will be invalidated.
+
+### Request
+* <b> HTTP Method </b>: POST
+* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/logout`
+
+### Request Body
+The request body may include the following parameter:
+
+token (string): A token used for authentication to verify the user's identity during the logout process.
+This parameter is essential to ensure that the logout request is valid.
+
+### Response
+Upon a successful logout, the server will respond with a JSON object containing the following fields:
+* statusCode: Indicates the status of the request (0 for success).
+* data: An empty object, as no additional data is returned upon successful logout.
+* message: A string that may contain a confirmation message (may be empty).
+* success: A boolean indicating the success of the logout operation (true).
+
+### Status Codes
+200 OK: Indicates that the logout was successful.
+
+<i> And more and more testing works like this... </i>
