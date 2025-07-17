@@ -3,7 +3,7 @@
 ## Live Demo
 
 Here is the link to the live demo of the YouTube_(custom) application:
-[YouTube custom Backend](https://youtube-custom-backend.onrender.com)
+[YouTube custom Backend](myURL)
 
 ## Description
 
@@ -260,7 +260,7 @@ Ensure to provide valid input for all required fields to avoid receiving a 400 B
 
 ### <font color = #ffe47e> POST </font> login
 
-`https://youtube-custom-backend.onrender.com/api/v1/users/login`
+`myURL/api/v1/users/login`
 
 ### User Login API
 This endpoint allows users to log in to the application by providing their credentials.
@@ -268,7 +268,7 @@ Upon successful authentication, the server responds with user details and tokens
 
 ### Request
 * <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/login`
+* <b> Endpoint </b>: `myURL/api/v1/users/login`
 
 ### Headers
 <b> Content-Type </b>: `application/json`
@@ -365,7 +365,7 @@ Ensure that the request body is properly formatted and contains all required fie
 
 ### <font color = #ffe47e> POST </font> refresh-token
 
-`https://youtube-custom-backend.onrender.com/api/v1/users/refresh-token`
+`myURL/api/v1/users/refresh-token`
 
 ### Refresh Token API
 This endpoint allows users to refresh their authentication tokens.
@@ -373,7 +373,7 @@ It is essential for maintaining a valid session without requiring the user to lo
 
 ### Request
 * <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/refresh-token`
+* <b> Endpoint </b>: `myURL/api/v1/users/refresh-token`
 
 ### Headers
 * <b> Content-Type </b>: `application/json`
@@ -417,7 +417,7 @@ The structure will typically include:
 
 ### <font color = #ffe47e> POST </font> logout
 
-`https://youtube-custom-backend.onrender.com/api/v1/users/logout`
+`myURL/api/v1/users/logout`
 
 ### User Logout API
 This endpoint is used to log the user out of the application.
@@ -426,7 +426,7 @@ and any session or authentication tokens will be invalidated.
 
 ### Request
 * <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `https://youtube-custom-backend.onrender.com/api/v1/users/logout`
+* <b> Endpoint </b>: `myURL/api/v1/users/logout`
 
 ### Request Body
 The request body may include the following parameter:
@@ -445,3 +445,5 @@ Upon a successful logout, the server will respond with a JSON object containing 
 200 OK: Indicates that the logout was successful.
 
 <i> And more and more testing works like this... </i>
+
+# Assignment 2 - Develop more controllers and routes for the YouTube custom Backend application
