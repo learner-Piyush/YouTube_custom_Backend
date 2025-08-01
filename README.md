@@ -3,7 +3,7 @@
 ## Live Demo
 
 Here is the link to the live demo of the YouTube_(custom) application:
-[YouTube custom Backend](myURL)
+[YouTube custom Backend](https://youtube-custom-backend.onrender.com)
 
 ## Description
 
@@ -446,4 +446,40 @@ Upon a successful logout, the server will respond with a JSON object containing 
 
 <i> And more and more testing works like this... </i>
 
+---
+
 # Assignment 2 - Develop more controllers and routes for the YouTube custom Backend application
+
+## Video Controller
+The Video Controller is responsible for managing video-related operations in the YouTube custom Backend application.
+It handles video uploads, updates, deletions, and retrievals.
+The Video Controller interacts with the Video model to perform CRUD operations on video data.
+
+## Video Routes
+The Video Routes define the API endpoints for video-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/videos`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to upload a video.
+Make sure to use title, description, and video file under 100MB.
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all videos.
+
+### Endpoint - `myURL/api/v1/videos/:videoId`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get a video by its ID.
+
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update the thumbnail of a video.
+
+### HTTP Method <font color = #f79a72> DElETE </font>
+Use this request to delete a video.
+
+### Endpoint - `myURL/api/v1/videos/toggle/publish/:videoId`
+
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to publish or unpublish a video.

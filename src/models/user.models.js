@@ -46,6 +46,10 @@ const userSchema = new Schema(
         coverImage: {
             type: String // cloudinary URL
         },
+        totalVideos: {
+            type: Number,
+            default: 0
+        },
         watchHistory: [
             {
                 type: Schema.Types.ObjectId,
