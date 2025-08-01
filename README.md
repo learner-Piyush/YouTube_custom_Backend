@@ -476,7 +476,7 @@ Use this request to get a video by its ID.
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to update the thumbnail of a video.
 
-### HTTP Method <font color = #f79a72> DElETE </font>
+### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a video.
 
 ### Endpoint - `myURL/api/v1/videos/toggle/publish/:videoId`
