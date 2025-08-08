@@ -483,3 +483,44 @@ Use this request to delete a video.
 
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to publish or unpublish a video.
+
+## Playlist Controller
+The Playlist Controller is responsible for managing playlists in the YouTube custom Backend application.
+It handles playlist creation, updates, deletions, and video management within playlists.
+The Playlist Controller interacts with the Playlist model to perform CRUD operations on playlist data.
+
+## Playlist Routes
+The Playlist Routes define the API endpoints for playlist-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/playlists`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to create a new playlist.
+Make sure to provide a title and description for the playlist.
+
+### Endpoint - `myURL/api/v1/playlists/:playlistId`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get a playlist by its ID.
+
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update the title and description of a playlist.
+
+### HTTP Method <font color = #f79a72> DELETE </font>
+Use this request to delete a playlist.
+
+### Endpoint - `myURL/api/v1/playlists/add/:videoId/:playlistId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to add a video to a playlist.
+
+### Endpoint - `myURL/api/v1/playlists/remove/:videoId/:playlistId`
+
+### HTTP Method <font color = #f79a72> DELETE </font>
+Use this request to remove a video from a playlist.
+
+### Endpoint - `myURL/api/v1/playlists/user/:userId`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all playlists created by a specific user.
