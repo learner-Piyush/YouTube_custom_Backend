@@ -524,3 +524,25 @@ Use this request to remove a video from a playlist.
 
 ### HTTP Method <font color = #6bdd9a> GET </font>
 Use this request to get all playlists created by a specific user.
+
+## Subscription Controller
+The Subscription Controller is responsible for managing user subscriptions to channels in the YouTube custom Backend application.
+It handles subscription and retrieval of subscribed channels.
+The Subscription Controller interacts with the Subscription model to perform CRUD operations on subscription data.
+
+## Subscription Routes
+The Subscription Routes define the API endpoints for subscription-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/subscriptions/channel/:channelId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to subscribe and unsubscribe a channel.
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all subscribers (followers) of a user.
+
+### Endpoint - `myURL/api/v1/subscriptions/user/:subscriberId`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all channels subscribed (following) by a user.
