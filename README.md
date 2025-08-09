@@ -571,3 +571,30 @@ Use this request to update a comment.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a comment.
+
+## Tweet Controller
+The Tweet Controller is responsible for managing tweets in the YouTube custom Backend application.
+It handles tweet creation, updates, deletions, and retrievals.
+The Tweet Controller interacts with the Tweet model to perform CRUD operations on tweet data.
+
+## Tweet Routes
+The Tweet Routes define the API endpoints for tweet-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/tweets`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to create a new tweet.
+
+### Endpoint - `myURL/api/v1/tweets/user/:userId`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all tweets by a specific user.
+
+### Endpoint - `myURL/api/v1/tweets/:tweetId`
+
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update a tweet.
+
+### HTTP Method <font color = #f79a72> DELETE </font>
+Use this request to delete a tweet.
