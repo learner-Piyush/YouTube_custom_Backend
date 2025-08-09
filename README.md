@@ -546,3 +546,28 @@ Use this request to get all subscribers (followers) of a user.
 
 ### HTTP Method <font color = #6bdd9a> GET </font>
 Use this request to get all channels subscribed (following) by a user.
+
+## Comment Controller
+The Comment Controller is responsible for managing comments on videos in the YouTube custom Backend application.
+It handles comment creation, updates, deletions, and retrievals.
+The Comment Controller interacts with the Comment model to perform CRUD operations on comment data.
+
+## Comment Routes
+The Comment Routes define the API endpoints for comment-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/comments/:videoId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to create a new comment on a video.
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all comments on a video.
+
+### Endpoint - `myURL/api/v1/comments/comment/:commentId`
+
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update a comment.
+
+### HTTP Method <font color = #f79a72> DELETE </font>
+Use this request to delete a comment.
