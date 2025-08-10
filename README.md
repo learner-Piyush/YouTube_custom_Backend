@@ -598,3 +598,32 @@ Use this request to update a tweet.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a tweet.
+
+## Like Controller
+The Like Controller is responsible for managing likes on videos in the YouTube custom Backend application.
+It handles liking and unliking videos, as well as retrieving liked videos.
+The Like Controller interacts with the Like model to perform CRUD operations on like data.
+
+## Like Routes
+The Like Routes define the API endpoints for like-related operations.
+Let's implement the following features:
+
+### Endpoint - `myURL/api/v1/likes/toggle/video/:videoId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to like or unlike a video.
+
+### Endpoint - `myURL/api/v1/likes/toggle/comment/:commentId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to like or unlike a comment.
+
+### Endpoint - `myURL/api/v1/likes/toggle/tweet/:tweetId`
+
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to like or unlike a tweet.
+
+### Endpoint - `myURL/api/v1/likes/videos`
+
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get all liked videos.
