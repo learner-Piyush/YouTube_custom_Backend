@@ -400,7 +400,7 @@ const getWatchHistory = asyncHandler(async (req, res) => {
                 localField: "watchHistory",
                 foreignField: "_id",
                 as: "watchHistory",
-                pipelines: [
+                pipeline: [
                     {
                         $lookup: {
                             from: "users",

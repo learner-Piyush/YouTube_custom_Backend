@@ -215,7 +215,7 @@ const togglePublishStatus = asyncHandler(async (req, res) => {
 
     const user = await User.findById(req.user._id)
 
-    if (!user || video.uploader.toString() !== user._id.toString()) {
+    if (!user || video.owner.toString() !== user._id.toString()) {
         throw new apiError(403, "You are not authorized to change the publish status of this video");
         
     }

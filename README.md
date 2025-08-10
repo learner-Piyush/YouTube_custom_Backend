@@ -14,7 +14,40 @@ It includes user registration, login, video upload, profile management functiona
 The backend of the application is built using Node.js, Express, and MongoDB.
 It provides a RESTful API for managing users, videos, and other related resources.
 
-## [Data Model](https://app.eraser.io/workspace/Glfyb7q3zdi9q8fYEccc?origin=share)
+## Table of Contents
+- [Data Model](#data-model)
+- [Technologies Used](#technologies-used)
+- [File Structure](#file-structure)
+- [Postman API Documentation](#postman-api-documentation)
+  - [Healthcheck Controller](#healthcheck-controller)
+  - [User Controller](#user-controller)
+    - [Endpoint - `myURL/api/v1/users/register`](#endpoint---myurlapi-v1usersregister)
+
+- [Assignment 1 - Test the remaining endpoints of User Controller APIs using Postman](#assignment-1---test-the-remaining-endpoints-of-user-controller-apis-using-postman)
+  - [Endpoint - `myURL/api/v1/users/register`](#endpoint---myurlapi-v1usersregister)
+  - [Endpoint - `myURL/api/v1/users/login`](#endpoint---myurlapi-v1userslogin)
+  - [Endpoint - `myURL/api/v1/users/logout`](#endpoint---myurlapi-v1userslogout)
+  - [Endpoint - `myURL/api/v1/users/refresh-token`](#endpoint---myurlapi-v1usersrefresh-token)
+  - [Endpoint - `myURL/api/v1/users/change-password`](#endpoint---myurlapi-v1userschange-password)
+  - [Endpoint - `myURL/api/v1/users/current-user`](#endpoint---myurlapi-v1userscurrent-user)
+  - [Endpoint - `myURL/api/v1/users/update-account`](#endpoint---myurlapi-v1usersupdate-account)
+  - [Endpoint - `myURL/api/v1/users/avatar`](#endpoint---myurlapi-v1usersavatar)
+  - [Endpoint - `myURL/api/v1/users/cover-image`](#endpoint---myurlapi-v1userscover-image)
+  - [Endpoint - `myURL/api/v1/users/channel/:username`](#endpoint---myurlapi-v1userschannelusername)
+  - [Endpoint - `myURL/api/v1/users/history`](#endpoint---myurlapi-v1usershistory)
+  
+- [Assignment 2 - Develop more controllers and routes for the YouTube custom Backend application](#assignment-2---develop-more-controllers-and-routes-for-the-youtube-custom-backend-application)
+  - [Updated File Structure](#updated-file-structure)
+  - [Video Controller](#video-controller)
+  - [Playlist Controller](#playlist-controller)
+  - [Subscription Controller](#subscription-controller)
+  - [Comment Controller](#comment-controller)
+  - [Tweet Controller](#tweet-controller)
+  - [Like Controller](#like-controller)
+
+## Data Model
+Here is the link to the data model of the YouTube_(custom) application:
+[Data Model](https://app.eraser.io/workspace/Glfyb7q3zdi9q8fYEccc?origin=share)
 
 ## Technologies Used
 
@@ -87,368 +120,171 @@ YouTube_(custom)/
             
 ```
 
----
-
 # Postman API Documentation
 This documentation provides a comprehensive overview of the API endpoints available in the YouTube (custom) application.
-It includes details on how to interact with the API, including request methods, endpoints, request bodies, and expected responses.
+It includes details on how to interact with the API, including request methods and endpoints.
 Copy the URL and set `myURL` as variable in Postman to test the API endpoints.
 
-## healthcheck
+## Healthcheck Controller
+The Healthcheck Controller is responsible for providing a simple endpoint to check the operational status of the Youtube custom Backend application.
+It allows users to verify if the application is running and accessible.
+The endpoint is used to verify the operational status of the service.
 
-### <font color = #6bdd9a> GET </font> New Request
+## Healthcheck Routes
+The Healthcheck Routes define the API endpoints for health check operations.
+Let's implement the following feature:
 
-`myURL/api/v1/healthcheck`
+### Endpoint - `myURL/api/v1/healthcheck`
 
-### Healthcheck API
-The Healthcheck API endpoint is used to verify the operational status of the service.
-It provides a simple way to check if the application is running and accessible.
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to check the operational status of the YouTube custom Backend application.
 
-### Request
-* <b> HTTP Method </b>: GET
-* <b> Endpoint </b>: `myURL/api/v1/healthcheck`
+## User Controller
+The User Controller is responsible for managing user-related operations in the YouTube custom Backend application.
+It handles user registration, login, logout, password management, and profile updates.
+The User Controller interacts with the User model to perform CRUD operations on user data.
 
-### Response
-### Expected Status Codes
-* <b> 200 OK </b>: Indicates that the service is healthy and operational.
+## User Routes
+The User Routes define the API endpoints for user-related operations.
+Let's implement the following features:
 
-### Response Body
-The response body is returned in JSON format and contains the following fields:
-* statusCode: A numerical code indicating the status of the health check (0 indicates success).
-* data: A placeholder for any additional data related to the health check (may be empty).
-* message: A message providing further details about the health status (may be empty).
-* success: A boolean indicating whether the health check was successful (true indicates success).
+### Endpoint - `myURL/api/v1/users/register`
 
-** Example Response
-
-```JSON
-JSON
-
-{
-    "statusCode": 200,
-    "data": "OK",
-    "message": "Health check passed",
-    "success": true
-}
-```
-
-This response confirms that the service is functioning correctly.
-If the service is down or experiencing issues, a different status code will be returned along with relevant error information.
-
-## users
-
-### <font color = #ffe47e> POST </font> register
-
-`myURL/api/v1/users/register`
-
-### User Registration API
-This endpoint allows users to register by providing their details, including optional avatar and cover image uploads.
-The request must include the required fields: `fullname`, `email`, `username`, and `password`.
-Additionally, users can upload an optional `avatar` and `coverImage`.
-
-### Request
-* <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `myURL/api/v1/users/register`
-
-<b> Request Body (form-data) </b>
-
-| Parameter | Type | Description |
-| :---: | :---: | :---: |
-| `fullname` | text| The full name of the user. |
-| `email` | text | The email address of the user. |
-| `username` | text | The desired username for the user. |
-| `password` | text | The password for the user account. |
-| `avatar` | file | An optional profile image for the user. |
-| `coverImage` | file | An optional cover image for the user. |
-
-### Response
-* <b> Status Code </b>: 201 Created
-* <b> Content-Type </b>: application/json
-
-### Response Body
-
-```JSON
-JSON
-
-{
-  "statusCode": 0,
-  "data": {
-    {
-        "_id":{"$oid":"686cbd625ead05aab2f2d4b5"},
-        "username":"test",
-        "email":"test@gmail.com",
-        "fullname":"Test",
-        "avatar":"cloudinary url for avatar",
-        "coverImage":"cloudinary url for cover image",
-        "watchHistory":[],
-        "password":"$2b$10$Q..GeKOGSwU/yIf4ZIARD.Lp/pKYT56VbIl/hBwYMYFo6ru0bQuTi",
-        "createdAt":{"$date":{"$numberLong":"1751956834519"}},
-        "updatedAt":{"$date":{"$numberLong":"1751956834519"}},
-        "__v":{"$numberInt":"0"}
-    }
-  },
-  "message": "User registered successfully",
-  "success": true
-}
-```
-
-### Expected Behavior
-Upon successful registration, the API will respond with a 201 Created status code, indicating that the user has been successfully registered.
-The response will include a success message and the user data, such as the user's ID, username, email, fullname, and any uploaded images.
-The watchHistory will be initialized as an empty array, and timestamps for createdAt and updatedAt will be provided.
-This endpoint is crucial for user onboarding and ensures that all necessary information is collected for account creation.
-This endpoint allows users to register by providing their details.
-It is essential to ensure that all required fields are filled out correctly to successfully create a new user account.
-
-### Body <sub> form-data </sub>
-<table>
-<tr> <td> fullname </td> <td> Test </td> </tr>
-<tr> <td> email </td> <td> test@gmail.com </td> </tr>
-<tr> <td> username </td> <td> test </td> </tr>
-<tr> <td> password </td> <td> 123456789 </td> </tr>
-<tr> <td> avatar </td> <td> avatar local file path </td> </tr>
-<tr> <td> coverImage </td> <td> cover image local file path </td> </tr>
-</table>
-
-### Request
-* <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `myURL/api/v1/users/register`
-
-<b> Request Body </b>:
-The request body must be in JSON format and include the following parameters:
-* `fullname` (string): The full name of the user. Required.
-* `email` (string): The email address of the user. Required.
-* `username` (string): The desired username for the account. Required.
-* `password` (string): The password for the account. Required.
-
-### Response
-* <b> Status Code </b>: 400 Bad Request
-* <b> Content-Type </b>: text/html
-
-When one or multiple fields are left empty, the API will respond with a 400 Bad Request status code.
-The response will indicate which fields are required and provide a message detailing the validation errors.
-
-### Validation Rules
-* All fields (fullname, email, username, password) are mandatory.
-* If any of these fields are missing or empty, the API will return an error message specifying the required fields.
-
-### Example Error Response
-
-```HTML
-HTML
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <title>Error</title>
-</head>
-
-<body>
-    <pre>Error: All fields are required<br> <!-- Tons of Error messages... --> </pre>
-</body>
-
-</html>
-```
-
-Ensure to provide valid input for all required fields to avoid receiving a 400 Bad Request response.
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to register a new user.
+Make sure to provide full name, username, email, password and avatar image in form-data.
 
 ---
 
-# Assignment 1 - Test some of the endpoints in users using Postman
+# Assignment 1 - Test the remaining endpoints of User Controller APIs using Postman
 
-### <font color = #ffe47e> POST </font> login
+### Endpoint - `myURL/api/v1/users/login`
 
-`myURL/api/v1/users/login`
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to login a user.
+Make sure to provide email, username and password in the request body.
 
-### User Login API
-This endpoint allows users to log in to the application by providing their credentials.
-Upon successful authentication, the server responds with user details and tokens for session management.
+### Endpoint - `myURL/api/v1/users/logout`
 
-### Request
-* <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `myURL/api/v1/users/login`
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to logout a user.
 
-### Headers
-<b> Content-Type </b>: `application/json`
+### Endpoint - `myURL/api/v1/users/refresh-token`
 
-Specifies that the request body format is JSON.
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to refresh the access token of a user.
 
-### Request Body
-The request body must be a JSON object containing the following parameters:
+### Endpoint - `myURL/api/v1/users/change-password`
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| email | string | The email address of the user. |
-| username | string | The username of the user. |
-| password | string | The password for the user account. |
+### HTTP Method <font color = #ffe47e> POST </font>
+Use this request to change the password of a user.
+Make sure to provide old password and new password in the request body.
 
-### Example Request Body
+### Endpoint - `myURL/api/v1/users/current-user`
 
-```JSON
-JSON
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get the current logged-in user.
 
-{
-  "email": "test@gmail.com",
-  "username": "test",
-  "password": "123456789"
-}
-```
+### Endpoint - `myURL/api/v1/users/update-account`
 
-### Response
-On a successful login, the server will return a JSON response with the following structure:
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update the account details of a user.
+Make sure to provide full name and email in the request body.
 
-### Response Structure
-| Key | Type | Description |
-| --- | --- | --- |
-| statusCode | number | The status code indicating the result of the request. |
-| data | object | Contains the user information and tokens. |
-| message | string | A message indicating the result of the login attempt. |
-| success | boolean | Indicates whether the login was successful. |
+### Endpoint - `myURL/api/v1/users/avatar`
 
-### User Data Structure
-The data object includes:
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update the avatar of a user.
+Make sure to provide avatar image in form-data.
 
-| Key | Type | Description |
-| --- | --- | --- |
-| user | object | Information about the logged-in user. |
-| accessToken | string | Token for accessing protected routes. |
-| refreshToken | string | Token for refreshing the session. |
+### Endpoint - `myURL/api/v1/users/cover-image`
 
-The user object contains the following fields:
- * `_id`: User's unique identifier.
- * `username`: User's username.
- * `email`: User's email address.
- * `fullname`: User's full name.
- * `avatar`: URL to the user's avatar image.
- * `coverImage`: URL to the user's cover image.
- * `watchHistory`: Array of videos watched by the user.
- * `createdAt`: Timestamp of user account creation.
- * `updatedAt`: Timestamp of the last update to the user account.
- * `__v`: Version key for the user document.
+### HTTP Method <font color = #c0a8e1> PATCH </font>
+Use this request to update the cover image of a user.
+Make sure to provide cover image in form-data.
 
-### Example Response
+### Endpoint - `myURL/api/v1/users/channel/:username`
 
-```JSON
-JSON
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get the channel details of a user by their username.
 
-{
-    "statusCode": 200,
-    "data": {
-        "user": {
-            "_id": "686cbd625ead05aab2f2d4b5",
-            "username": "test",
-            "email": "test@gmail.com",
-            "fullname": "Test",
-            "avatar": "cloudinary url for avatar",
-            "coverImage": "cloudinary url for cover image",
-            "watchHistory": [],
-            "createdAt": "2025-07-08T06:40:34.519Z",
-            "updatedAt": "2025-07-10T13:46:09.969Z",
-            "__v": 0
-        },
-        "accessToken": "long value of access token",
-        "refreshToken": "long value of refresh token"
-    },
-    "message": "User logged in successfully",
-    "success": true
-}
-```
+### Endpoint - `myURL/api/v1/users/history`
 
-### Status Codes
-200 OK: Successfully logged in.
-4xx: Client error, such as invalid credentials or missing parameters.
-5xx: Server error, indicating an issue with the login process.
-
-Ensure that the request body is properly formatted and contains all required fields to avoid errors during login.
-
-### <font color = #ffe47e> POST </font> refresh-token
-
-`myURL/api/v1/users/refresh-token`
-
-### Refresh Token API
-This endpoint allows users to refresh their authentication tokens.
-It is essential for maintaining a valid session without requiring the user to log in again.
-
-### Request
-* <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `myURL/api/v1/users/refresh-token`
-
-### Headers
-* <b> Content-Type </b>: `application/json`
-* Authorization: `Bearer {your_access_token}` (if required)
-
-### Request Body
-The request body must be sent as a JSON object and should include the following field:
-refresh_token (string): The token that is used to obtain a new access token.
-
-Example Request Body
-
-```JSON
-JSON
-
-{
-    "statusCode": 200,
-    "data": {
-        "accessToken": "long value of access token",
-        "refreshToken": "long value of new refresh token"
-    },
-    "message": "Access token refreshed successfully",
-    "success": true
-}
-```
-
-### Response
-### Success Response
-* Status Code: 200
-* Content-Type: `application/json`
-
-### Error Response
-In case of an error, the API may return different status codes along with an error message.
-The structure will typically include:
-* statusCode: An error code indicating the type of error.
-* message: A description of the error.
-* success: A boolean indicating the failure of the request.
-
-### Notes
-* Ensure that the refresh_token is valid and has not expired.
-* The returned accessToken and refreshToken should be stored securely for future requests.
-
-### <font color = #ffe47e> POST </font> logout
-
-`myURL/api/v1/users/logout`
-
-### User Logout API
-This endpoint is used to log the user out of the application.
-By sending a POST request to this endpoint, the user will be successfully logged out,
-and any session or authentication tokens will be invalidated.
-
-### Request
-* <b> HTTP Method </b>: POST
-* <b> Endpoint </b>: `myURL/api/v1/users/logout`
-
-### Request Body
-The request body may include the following parameter:
-
-token (string): A token used for authentication to verify the user's identity during the logout process.
-This parameter is essential to ensure that the logout request is valid.
-
-### Response
-Upon a successful logout, the server will respond with a JSON object containing the following fields:
-* statusCode: Indicates the status of the request (0 for success).
-* data: An empty object, as no additional data is returned upon successful logout.
-* message: A string that may contain a confirmation message (may be empty).
-* success: A boolean indicating the success of the logout operation (true).
-
-### Status Codes
-200 OK: Indicates that the logout was successful.
-
-<i> And more and more testing works like this... </i>
+### HTTP Method <font color = #6bdd9a> GET </font>
+Use this request to get the watch history of a user.
 
 ---
 
 # Assignment 2 - Develop more controllers and routes for the YouTube custom Backend application
+
+## Updated File Structure
+
+```bash
+YouTube_(custom)/
+│   .env
+│   .gitignore
+│   .prettierignore
+│   .prettierrc
+│   package-lock.json
+│   package.json
+│   README.md
+│   
+├───node_modules/
+│           
+├───public/
+│   └───temp/
+│           .gitkeep
+│           
+└───src/
+    │   app.js
+    │   constants.js
+    │   index.js
+    │   
+    ├───controllers/
+    │       comment.controller.js
+    │       dashboard.controller.js
+    │       healthcheck.controllers.js
+    │       like.controller.js
+    │       playlist.controller.js
+    │       subscription.controller.js
+    │       tweet.controller.js
+    │       user.controllers.js
+    │       video.controller.js
+    │       
+    ├───db/
+    │       index.js
+    │       
+    ├───middlewares/
+    │       auth.middlewares.js
+    │       multer.middlewares.js
+    │       
+    ├───models/
+    │       comment.models.js
+    │       like.models.js
+    │       playlist.models.js
+    │       subscription.models.js
+    │       tweet.models.js
+    │       user.models.js
+    │       video.models.js
+    │       
+    ├───routes/
+    │       comment.router.js
+    │       dashboard.router.js
+    │       healthcheck.routes.js
+    │       like.router.js
+    │       playlist.router.js
+    │       subscription.router.js
+    │       tweet.router.js
+    │       user.routes.js
+    │       video.router.js
+    │       
+    └───utils/
+            apiError.js
+            apiResponse.js
+            asyncHandler.js
+            cloudinary.js
+            
+```
 
 ## Video Controller
 The Video Controller is responsible for managing video-related operations in the YouTube custom Backend application.
@@ -463,7 +299,7 @@ Let's implement the following features:
 
 ### HTTP Method <font color = #ffe47e> POST </font>
 Use this request to upload a video.
-Make sure to use title, description, and video file under 100MB.
+Make sure to use title, description, and video file under 100MB in form-data.
 
 ### HTTP Method <font color = #6bdd9a> GET </font>
 Use this request to get all videos.
@@ -475,6 +311,7 @@ Use this request to get a video by its ID.
 
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to update the thumbnail of a video.
+Make sure to provide thumbnail image in form-data.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a video.
@@ -506,6 +343,7 @@ Use this request to get a playlist by its ID.
 
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to update the title and description of a playlist.
+Make sure to provide the updated title and description in the request body.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a playlist.
@@ -560,6 +398,7 @@ Let's implement the following features:
 
 ### HTTP Method <font color = #ffe47e> POST </font>
 Use this request to create a new comment on a video.
+Make sure to provide the content of the comment in the request body.
 
 ### HTTP Method <font color = #6bdd9a> GET </font>
 Use this request to get all comments on a video.
@@ -568,6 +407,7 @@ Use this request to get all comments on a video.
 
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to update a comment.
+Make sure to provide the updated content of the comment in the request body.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a comment.
@@ -585,6 +425,7 @@ Let's implement the following features:
 
 ### HTTP Method <font color = #ffe47e> POST </font>
 Use this request to create a new tweet.
+Make sure to provide the content of the tweet.
 
 ### Endpoint - `myURL/api/v1/tweets/user/:userId`
 
@@ -595,6 +436,7 @@ Use this request to get all tweets by a specific user.
 
 ### HTTP Method <font color = #c0a8e1> PATCH </font>
 Use this request to update a tweet.
+Make sure to provide the updated content of the tweet in the request body.
 
 ### HTTP Method <font color = #f79a72> DELETE </font>
 Use this request to delete a tweet.
